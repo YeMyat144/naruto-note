@@ -8,6 +8,7 @@ import {
   Toolbar,
   Button,
   IconButton,
+  Typography,
   Box,
   Drawer,
   List,
@@ -26,9 +27,9 @@ export default function Navbar() {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"))
 
   const navItems = [
-    { name: "Characters", path: "/" },
+    { name: "Rank", path: "/rank" },
     { name: "Notes", path: "/note" },
-    { name: "About", path: "/" },
+    { name: "Game", path: "/game" }
   ]
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -61,7 +62,9 @@ export default function Navbar() {
         <Toolbar>
           <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }}>
             <Link href="/" passHref>
-              <Button sx={{ color: "white" }}>NaruNote</Button>
+              <Typography variant="h6" >
+                NaruNote
+              </Typography>
             </Link> 
           </Box>
 

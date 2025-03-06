@@ -18,7 +18,7 @@ export default function Home() {
       <Box
         sx={{
           background:
-            "linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/placeholder.svg?height=500&width=1200')",
+            "linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images4.alphacoders.com/100/1001038.jpg?height=500&width=1200')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           py: 8,

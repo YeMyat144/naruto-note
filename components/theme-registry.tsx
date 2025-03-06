@@ -20,7 +20,7 @@ const theme = createTheme({
       contrastText: "#FFFFFF",
     },
     background: {
-      default: "#F5F5F5",
+      default: "#000000",
       paper: "#333333",
     },
     text: {
