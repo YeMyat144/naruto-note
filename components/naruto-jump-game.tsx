@@ -30,7 +30,7 @@ interface Obstacle extends GameObject {
 
 const GROUND_HEIGHT = 30
 const JUMP_HEIGHT = 120
-const INITIAL_SPEED = 5
+const INITIAL_SPEED = 3
 const SPEED_INCREMENT = 0.0005
 const OBSTACLE_SPAWN_RATE = 0.02
 const OBSTACLE_MIN_DISTANCE = 300
@@ -49,7 +49,7 @@ export default function NarutoJumpGame({ onGameOver, muted }: NarutoJumpGameProp
       height: 60,
       jumping: false,
       jumpHeight: JUMP_HEIGHT,
-      jumpSpeed: 8,
+      jumpSpeed: 4,
       originalY: 0,
     } as Naruto,
     obstacles: [] as Obstacle[],
