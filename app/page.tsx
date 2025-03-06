@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Container, Typography, Grid, Box, TextField, InputAdornment } from "@mui/material"
+import { Container, Grid, Box, TextField, InputAdornment } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
 import CharacterCard from "@/components/character-card"
 import { characters } from "@/data/characters"

@@ -20,7 +20,6 @@ import { useRouter } from "next/navigation"
 import { characters } from "@/data/characters"
 import type { CharacterNote } from "@/types"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
-import Link from "next/link"
 
 export default function AddNotePage() {
   const [selectedCharacter, setSelectedCharacter] = useState("")

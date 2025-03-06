@@ -60,7 +60,9 @@ export default function Navbar() {
       <AppBar position="sticky" sx={{ backgroundColor: "primary.main" }}>
         <Toolbar>
           <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }}>
-            <img src="/lo.png" alt="Logo" style={{ width: "50px", height: "30px" }} />
+            <Link href="/" passHref>
+              <Button sx={{ color: "white" }}>NaruNote</Button>
+            </Link> 
           </Box>
 
           {isMobile ? (
