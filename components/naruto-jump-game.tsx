@@ -105,7 +105,7 @@ export default function NarutoJumpGame({ onGameOver, muted }: NarutoJumpGameProp
     // Load images
     const images = imagesRef.current
     images.naruto.src = "/naruto.png?height=60&width=40"
-    images.narutojump.src = "/naruto.png?height=60&width=40"
+    images.narutojump.src = "/jump.png?height=60&width=40"
     images.log.src = "/log.png?height=30&width=50"
     images.rock.src = "/rock.png?height=40&width=40"
     images.shuriken.src = "/shuriken.png?height=30&width=30"
