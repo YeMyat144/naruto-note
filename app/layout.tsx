@@ -8,7 +8,7 @@ import Navbar from "@/components/navbar"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Naruto",
+  title: "NarutoNote",
 }
 
 export default function RootLayout({

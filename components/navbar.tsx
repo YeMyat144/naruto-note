@@ -29,7 +29,8 @@ export default function Navbar() {
   const navItems = [
     { name: "Rank", path: "/rank" },
     { name: "Notes", path: "/note" },
-    { name: "Game", path: "/game" }
+    { name: "Game", path: "/game" },
+    { name: "Soundtrack", path: "/soundtrack" },
   ]
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -63,7 +64,7 @@ export default function Navbar() {
           <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }}>
             <Link href="/" passHref>
               <Typography variant="h6" >
-                NaruNote
+                NarutoNote
               </Typography>
             </Link> 
           </Box>
