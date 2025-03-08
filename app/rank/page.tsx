@@ -61,8 +61,7 @@ export default function RankPage() {
 
   return (
     <Container maxWidth="lg" sx={{ py: 1 }}>
-      <Paper sx={{ mb: 6 }}>
-        <Tabs
+     <Tabs
           value={tabValue}
           onChange={handleTabChange}
           variant="fullWidth"
@@ -484,7 +483,7 @@ export default function RankPage() {
             })}
           </Grid>
         </TabPanel>
-      </Paper>
+
 
       <Paper sx={{ p: 4, textAlign: "center" }}>
         <Typography variant="h6" gutterBottom>

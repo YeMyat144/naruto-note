@@ -7,24 +7,19 @@ import {
   Container,
   Typography,
   Box,
-  Paper,
   Grid,
   Card,
   CardContent,
   CardMedia,
   Tabs,
   Tab,
-  List,
-  ListItem,
-  ListItemText,
-  Avatar,
-  Divider,
   Link as MuiLink,
   Alert,
 } from "@mui/material"
-import PlayArrowIcon from "@mui/icons-material/PlayArrow"
 import LibraryMusicIcon from "@mui/icons-material/LibraryMusic"
-import { narutoSoundtracks } from "@/data/soundtracks"
+import MovieIcon from "@mui/icons-material/Movie";  
+import TheatersIcon from '@mui/icons-material/Theaters'; 
+import { narutoMovies } from "@/data/movies"
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -57,10 +52,8 @@ export default function SoundtrackPage() {
   }
 
   return (
-    <Container maxWidth="lg" sx={{ py: 6 }}>
+    <Container maxWidth="lg" sx={{ py: 1 }}>
 
-
-      <Paper sx={{ mb: 6 }}>
         <Tabs
           value={tabValue}
           onChange={handleTabChange}
@@ -75,8 +68,9 @@ export default function SoundtrackPage() {
             },
           }}
         >
-          <Tab icon={<PlayArrowIcon />} label="Spotify Playlist" />
-          <Tab icon={<LibraryMusicIcon />} label="Composers" />
+          <Tab icon={<LibraryMusicIcon />}  />
+          <Tab icon={<TheatersIcon />}  />
+          <Tab icon={<MovieIcon />} />
         </Tabs>
 
         <TabPanel value={tabValue} index={0}>
@@ -120,67 +114,63 @@ export default function SoundtrackPage() {
 
           <Typography variant="body2" color="text.secondary">
             Note: You need a Spotify account to play full tracks. Without an account, you can listen to 30-second
-            previews.
+            previews. All Naruto music is owned by TV Tokyo, Pierrot Co., Ltd., and their respective composers. This page is for
+          informational purposes only and does not claim ownership of any music. Spotify playlists are created by fans
+          and may be subject to change.
           </Typography>
         </TabPanel>
 
         <TabPanel value={tabValue} index={1}>
-          <Typography variant="h5" gutterBottom sx={{ fontWeight: "bold", color: "primary.main" }}>
-            The Composers Behind Naruto
-          </Typography>
-
           <Grid container spacing={4}>
-            {narutoSoundtracks.composers.map((composer) => (
-              <Grid item key={composer.id} xs={12} md={6}>
-                <Card sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
-                  <Box sx={{ display: "flex", p: 2 }}>
-                    <Avatar
-                      src={composer.image}
-                      alt={composer.name}
-                      sx={{ width: 80, height: 80, mr: 2, border: "1px solid", borderColor: "divider" }}
-                    />
-                    <Box>
-                      <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-                        {composer.name}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {composer.role}
-                      </Typography>
-                    </Box>
-                  </Box>
-                  <Divider />
-                  <CardContent sx={{ flexGrow: 1 }}>
+            {narutoMovies.movies.map((movie) => (
+              <Grid item key={movie.id} xs={12} md={6}>
+                <Card sx={{ display: "flex", flexDirection: "column", height: "100%", borderRadius: 1  }}>
+                  <CardMedia
+                    component="img"
+                    sx={{ height: 250 }}
+                    image={movie.image}
+                    alt={movie.title}
+                  />
+                  <CardContent>
+                    <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                      {movie.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {movie.releaseDate} • {movie.runtime}
+                    </Typography>
                     <Typography variant="body2" paragraph>
-                      {composer.bio}
+                      {movie.description}
                     </Typography>
-                    <Typography variant="body2" sx={{ fontWeight: "bold" }}>
-                      Notable Works:
-                    </Typography>
-                    <List dense>
-                      {composer.notableWorks.map((work, index) => (
-                        <ListItem key={index} disablePadding>
-                          <ListItemText primary={`• ${work}`} />
-                        </ListItem>
-                      ))}
-                    </List>
                   </CardContent>
                 </Card>
               </Grid>
             ))}
           </Grid>
         </TabPanel>
-      </Paper>
 
-      <Paper sx={{ p: 4, textAlign: "center" }}>
-        <Typography variant="h6" gutterBottom>
-          Music Rights Information
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          All Naruto music is owned by TV Tokyo, Pierrot Co., Ltd., and their respective composers. This page is for
-          informational purposes only and does not claim ownership of any music. Spotify playlists are created by fans
-          and may be subject to change.
-        </Typography>
-      </Paper>
+        <TabPanel value={tabValue} index={2}>
+          <Grid container spacing={4}>
+            {narutoMovies.shortFilms.map((movie) => (
+              <Grid item key={movie.id} xs={12} md={6}>
+                <Card sx={{ display: "flex", flexDirection: "column", height: "100%", borderRadius: 1 }}>
+                  <CardContent>
+                    <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                      {movie.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {movie.releaseDate} • {movie.runtime}
+                    </Typography>
+                    <Typography variant="body2" paragraph>
+                      {movie.description}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </TabPanel>
+
+
     </Container>
   )
 }
