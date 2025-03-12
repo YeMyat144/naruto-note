@@ -92,7 +92,7 @@ export default function TeamPage() {
           background-repeat: no-repeat;
           background-position: top center;
           pointer-events: none;
-          opacity: 0.3;
+          opacity: 0.2;
           z-index: -1;
         }
 
