@@ -29,6 +29,7 @@ export default function Navbar() {
     { name: "Notes", path: "/note" },
     { name: "Game", path: "/game" },
     { name: "Media", path: "/media" },
+    { name: "Team", path: "/team"},
   ];
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
