@@ -19,7 +19,7 @@ export default function TeamPage() {
         <div className="slider" style={{ "--quantity": teamImages.length } as React.CSSProperties}>
           {teamImages.map((image, index) => (
             <div key={index} className="item" style={{ "--position": index + 1 } as React.CSSProperties}>
-              <img src={image.src || "/back.jpg"} alt={image.alt} />
+              <img src={image.src || "/madara.png"} alt={image.alt} />
             </div>
           ))}
         </div>
@@ -74,7 +74,7 @@ export default function TeamPage() {
         @import url('https://fonts.cdnfonts.com/css/poppins');
 
         body {
-          background-color: #f5f5f5;
+          background-color: #000;
           background-image: repeating-linear-gradient(to right, transparent 0 100px, #ff800022 100px 101px),
             repeating-linear-gradient(to bottom, transparent 0 100px, #ff800022 100px 101px);
         }
@@ -87,12 +87,12 @@ export default function TeamPage() {
           height: 90%;
           transform: translateX(-50%);
           content: '';
-          background-image: url('/placeholder.svg?height=800&width=1400');
+          background-image: url('https://preview.redd.it/what-makes-madara-uchiha-such-a-good-character-when-it-v0-316dlixm4tgc1.jpeg?auto=webp&s=b7df787f155166613508760fc26ed8544a4c35aa');
           background-size: 100%;
           background-repeat: no-repeat;
           background-position: top center;
           pointer-events: none;
-          opacity: 0.1;
+          opacity: 0.3;
           z-index: -1;
         }
 
