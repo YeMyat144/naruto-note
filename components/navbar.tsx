@@ -25,11 +25,11 @@ export default function Navbar() {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const navItems = [
-    { name: "Rank", path: "/rank" },
+    // { name: "Rank", path: "/rank" },
     { name: "Notes", path: "/note" },
     { name: "Game", path: "/game" },
     { name: "Media", path: "/media" },
-    { name: "Team", path: "/team"},
+    { name: "Akatsuki", path: "/team"},
   ];
 
   const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {

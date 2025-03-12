@@ -32,7 +32,7 @@ export default function TeamPage() {
               fontFamily: "'ICA Rubrik', Arial, sans-serif",
               fontSize: { xs: "3em", sm: "5em", md: "7em", lg: "10em" },
               lineHeight: "1em",
-              color: "red",
+              color: "black",
               position: "relative",
               textAlign: "center",
               width: "100%",
@@ -43,7 +43,7 @@ export default function TeamPage() {
                 inset: "0 0 0 0",
                 content: "attr(data-content)",
                 zIndex: 2,
-                WebkitTextStroke: "2px #000000",
+                WebkitTextStroke: "2px #FF0000",
                 color: "transparent",
               },
             }}
@@ -61,7 +61,7 @@ export default function TeamPage() {
               mb: 6,
             }}
           >
-            <Typography variant="body1" sx={{color: 'red'}} paragraph>
+            <Typography variant="body1" sx={{color: '#950606'}} paragraph>
             Wake up to reality. Nothing ever goes as planned in this world. The longer you live, the more you realize that only pain, suffering, and futility exist in this reality
             </Typography>
           </Paper>
