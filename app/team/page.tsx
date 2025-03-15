@@ -62,7 +62,7 @@ export default function TeamPage() {
             }}
           >
             <Typography variant="body1" sx={{color: '#950606'}} paragraph>
-            Wake up to reality. Nothing ever goes as planned in this world. The longer you live, the more you realize that only pain, suffering, and futility exist in this reality
+            現実に目を覚ましてください この世で計画通りに事が進むことは決してありません 長く生きれば生きるほど この現実には痛みと苦しみと無益さしか存在しないことに気づきます
             </Typography>
           </Paper>
         </Box>
