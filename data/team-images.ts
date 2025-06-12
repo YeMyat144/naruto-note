@@ -4,7 +4,7 @@ export const teamImages = [
       alt: "Team 7 - Naruto, Sasuke, Sakura, and Kakashi",
     },
     {
-      src: "https://assets.ggwp.id/2020/04/nagato-naruto-7-640x360.jpg",
+      src: "https://i.pinimg.com/736x/eb/1d/e7/eb1de79f6086ac42e6b7c2d0138ac475.jpg",
       alt: "Team 8 - Hinata, Kiba, Shino, and Kurenai",
     },
     {
