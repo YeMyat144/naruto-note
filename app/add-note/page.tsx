@@ -20,6 +20,7 @@ import { useRouter } from "next/navigation"
 import { characters } from "@/data/characters"
 import type { CharacterNote } from "@/types"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
+import { addNote } from "@/lib/firebase"
 
 export default function AddNotePage() {
   const [selectedCharacter, setSelectedCharacter] = useState("")
@@ -28,7 +29,7 @@ export default function AddNotePage() {
   const [snackbarOpen, setSnackbarOpen] = useState(false)
   const router = useRouter()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
     // Validate inputs
@@ -42,39 +43,32 @@ export default function AddNotePage() {
       return
     }
 
-    // Create new note
-    const newNote: CharacterNote = {
-      id: Date.now().toString(),
-      text: noteText,
-      createdAt: new Date().toISOString(),
+    try {
+      // Create new note
+      const newNote = {
+        text: noteText,
+        createdAt: new Date().toISOString(),
+      }
+
+      // Add note to Firebase
+      await addNote(selectedCharacter, newNote)
+
+      // Show success message
+      setSnackbarOpen(true)
+
+      // Reset form
+      setSelectedCharacter("")
+      setNoteText("")
+      setError("")
+
+      // Redirect after a short delay
+      setTimeout(() => {
+        router.push("/note")
+      }, 1500)
+    } catch (error) {
+      console.error("Error adding note:", error)
+      setError("Failed to add note. Please try again.")
     }
-
-    // Get existing notes for this character
-    const savedNotes = localStorage.getItem(`character-notes-${selectedCharacter}`)
-    let notes: CharacterNote[] = []
-
-    if (savedNotes) {
-      notes = JSON.parse(savedNotes)
-    }
-
-    // Add new note
-    notes.push(newNote)
-
-    // Save back to localStorage
-    localStorage.setItem(`character-notes-${selectedCharacter}`, JSON.stringify(notes))
-
-    // Show success message
-    setSnackbarOpen(true)
-
-    // Reset form
-    setSelectedCharacter("")
-    setNoteText("")
-    setError("")
-
-    // Redirect after a short delay
-    setTimeout(() => {
-      router.push("/note")
-    }, 1500)
   }
 
   return (
@@ -96,7 +90,6 @@ export default function AddNotePage() {
       </Typography>
 
       <Paper sx={{ p: 4, mt: 4 }}>
-    
         <form onSubmit={handleSubmit}>
           <FormControl fullWidth sx={{ mb: 3 }}>
             <InputLabel id="character-select-label">Select Character</InputLabel>
@@ -124,6 +117,12 @@ export default function AddNotePage() {
             onChange={(e) => setNoteText(e.target.value)}
             sx={{ mb: 3 }}
           />
+
+          {error && (
+            <Alert severity="error" sx={{ mb: 3 }}>
+              {error}
+            </Alert>
+          )}
 
           <Button
             type="submit"

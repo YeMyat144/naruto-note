@@ -62,15 +62,24 @@ export default function Home() {
         </Container>
       </Box>
 
-      <Container maxWidth="lg" sx={{ mb: 8 }}>
-        <Grid container spacing={4}>
-          {filteredCharacters.map((character) => (
-            <Grid item key={character.id} xs={12} sm={6} md={4}>
-              <CharacterCard character={character} />
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
+<Container maxWidth="lg" sx={{ mb: 8 }}>
+  <Box sx={{
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: 4,
+    '& > *': {
+      width: {
+        xs: '100%',     
+        sm: 'calc(50% - 16px)',  
+        md: 'calc(33.333% - 22px)' 
+      }
+    }
+  }}>
+    {filteredCharacters.map((character) => (
+      <CharacterCard key={character.id} character={character} />
+    ))}
+  </Box>
+</Container>
     </main>
   )
 }

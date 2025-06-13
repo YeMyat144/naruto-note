@@ -26,13 +26,20 @@ export default function CharacterCard({ character }: CharacterCardProps) {
       }}
       onClick={() => router.push(`/characters/${character.id}`)}
     >
-      <CardMedia component="img" height="240" image={character.image} alt={character.name} />
-      <CardContent sx={{ flexGrow: 1 }}>
+  <CardMedia
+  component="img"         
+  image={character.image}
+  alt={character.name}
+  style={{ objectFit: 'cover', width: '100%', height: 200, borderRadius: '2px 2px 0 0' }}  
+/>
+   
         <Typography
           gutterBottom
           variant="h5"
           component="div"
+          align="center"
           sx={{
+            mt: 1,
             fontWeight: "bold",
             color: "primary.main",
           }}
@@ -40,7 +47,7 @@ export default function CharacterCard({ character }: CharacterCardProps) {
           {character.name}
         </Typography>
 
-        <Box sx={{ mb: 2 }}>
+        {/* <Box sx={{ mb: 2 }}>
           <Chip
             label={character.village}
             size="small"
@@ -51,9 +58,9 @@ export default function CharacterCard({ character }: CharacterCardProps) {
             size="small"
             sx={{ mr: 1, mb: 1, backgroundColor: "secondary.main", color: "white" }}
           />
-        </Box>
+        </Box> */}
 
-        <Typography
+        {/* <Typography
           variant="body2"
           color="text.secondary"
           sx={{
@@ -64,8 +71,7 @@ export default function CharacterCard({ character }: CharacterCardProps) {
           }}
         >
           {character.description}
-        </Typography>
-      </CardContent>
+        </Typography> */}
     </Card>
   )
 }

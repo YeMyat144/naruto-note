@@ -13,7 +13,6 @@ import {
   FormControl,
   InputLabel,
   Select,
-  Grid,
   Card,
   CardContent,
   Button,
@@ -27,6 +26,7 @@ import { characters } from "@/data/characters"
 import type { CharacterNote } from "@/types"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { getAllNotes, deleteNote } from "@/lib/firebase"
 
 interface NoteWithCharacter extends CharacterNote {
   characterId: string
@@ -42,28 +42,28 @@ export default function NotesPage() {
   const router = useRouter()
 
   useEffect(() => {
-    // Load all notes from localStorage
-    const loadedNotes: NoteWithCharacter[] = []
-
-    characters.forEach((character) => {
-      const savedNotes = localStorage.getItem(`character-notes-${character.id}`)
-      if (savedNotes) {
-        const parsedNotes: CharacterNote[] = JSON.parse(savedNotes)
-        parsedNotes.forEach((note) => {
-          loadedNotes.push({
+    const loadNotes = async () => {
+      try {
+        const notes = await getAllNotes()
+        const notesWithCharacter: NoteWithCharacter[] = notes.map((note: any) => {
+          const character = characters.find((char) => char.id === note.characterId)
+          return {
             ...note,
-            characterId: character.id,
-            characterName: character.name,
-          })
+            characterName: character?.name || "Unknown Character",
+          }
         })
+
+        // Sort notes by creation date (newest first)
+        notesWithCharacter.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+
+        setAllNotes(notesWithCharacter)
+        setFilteredNotes(notesWithCharacter)
+      } catch (error) {
+        console.error("Error loading notes:", error)
       }
-    })
+    }
 
-    // Sort notes by creation date (newest first)
-    loadedNotes.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-
-    setAllNotes(loadedNotes)
-    setFilteredNotes(loadedNotes)
+    loadNotes()
   }, [])
 
   useEffect(() => {
@@ -86,21 +86,15 @@ export default function NotesPage() {
     setFilteredNotes(notes)
   }, [searchTerm, selectedCharacter, allNotes])
 
-  const handleDeleteNote = (characterId: string, noteId: string) => {
-    // Get notes for this character
-    const savedNotes = localStorage.getItem(`character-notes-${characterId}`)
-    if (savedNotes) {
-      const parsedNotes: CharacterNote[] = JSON.parse(savedNotes)
-      const updatedNotes = parsedNotes.filter((note) => note.id !== noteId)
-
-      // Save back to localStorage
-      localStorage.setItem(`character-notes-${characterId}`, JSON.stringify(updatedNotes))
-
+  const handleDeleteNote = async (characterId: string, noteId: string) => {
+    try {
+      await deleteNote(noteId)
       // Update state
       const updatedAllNotes = allNotes.filter((note) => !(note.characterId === characterId && note.id === noteId))
-
       setAllNotes(updatedAllNotes)
       setSnackbarOpen(true)
+    } catch (error) {
+      console.error("Error deleting note:", error)
     }
   }
 
@@ -140,44 +134,48 @@ export default function NotesPage() {
         </Button>
       </Box>
 
-      <Paper sx={{ p: 3, mb: 4 }}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
-            <TextField
-              fullWidth
-              variant="outlined"
-              placeholder="Search notes..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <FormControl fullWidth>
-              <InputLabel id="character-filter-label">Filter by Character</InputLabel>
-              <Select
-                labelId="character-filter-label"
-                value={selectedCharacter}
-                label="Filter by Character"
-                onChange={(e) => setSelectedCharacter(e.target.value)}
-              >
-                <MenuItem value="all">All Characters</MenuItem>
-                {characters.map((character) => (
-                  <MenuItem key={character.id} value={character.id}>
-                    {character.name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-        </Grid>
-      </Paper>
+      {/* Replaced Grid with CSS Grid */}
+      <Box sx={{ 
+        display: 'grid',
+        gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
+        gap: 2,
+        mb: 4
+      }}>
+        <Box>
+          <TextField
+            fullWidth
+            variant="outlined"
+            placeholder="Search notes..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
+        <Box>
+          <FormControl fullWidth>
+            <InputLabel id="character-filter-label">Filter by Character</InputLabel>
+            <Select
+              labelId="character-filter-label"
+              value={selectedCharacter}
+              label="Filter by Character"
+              onChange={(e) => setSelectedCharacter(e.target.value)}
+            >
+              <MenuItem value="all">All Characters</MenuItem>
+              {characters.map((character) => (
+                <MenuItem key={character.id} value={character.id}>
+                  {character.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
+      </Box>
 
       {filteredNotes.length > 0 ? (
         <List>
@@ -260,4 +258,3 @@ export default function NotesPage() {
     </Container>
   )
 }
-

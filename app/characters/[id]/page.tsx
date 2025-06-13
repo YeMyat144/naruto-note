@@ -7,7 +7,6 @@ import {
   Typography,
   Box,
   Paper,
-  Grid,
   Chip,
   Divider,
   TextField,
@@ -23,6 +22,7 @@ import DeleteIcon from "@mui/icons-material/Delete"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import { characters } from "@/data/characters"
 import type { CharacterNote } from "@/types"
+import { getNotesByCharacter, addNote, deleteNote } from "@/lib/firebase"
 
 export default function CharacterDetail() {
   const params = useParams()
@@ -35,29 +35,47 @@ export default function CharacterDetail() {
   const [newNote, setNewNote] = useState("")
 
   useEffect(() => {
-    // Load notes from localStorage
-    const savedNotes = localStorage.getItem(`character-notes-${id}`)
-    if (savedNotes) {
-      setNotes(JSON.parse(savedNotes))
+    const loadNotes = async () => {
+      try {
+        const characterNotes = await getNotesByCharacter(id)
+        setNotes(
+          characterNotes.map((note: any) => ({
+            id: note.id,
+            text: note.text ?? "",
+            createdAt: note.createdAt ?? new Date().toISOString(),
+          }))
+        )
+      } catch (error) {
+        console.error("Error loading notes:", error)
+      }
     }
+
+    loadNotes()
   }, [id])
 
-  const saveNotes = (updatedNotes: CharacterNote[]) => {
-    localStorage.setItem(`character-notes-${id}`, JSON.stringify(updatedNotes))
-    setNotes(updatedNotes)
-  }
-
-  const handleAddNote = () => {
+  const handleAddNote = async () => {
     if (newNote.trim()) {
-      const updatedNotes = [...notes, { id: Date.now().toString(), text: newNote, createdAt: new Date().toISOString() }]
-      saveNotes(updatedNotes)
-      setNewNote("")
+      try {
+        const newNoteData = {
+          text: newNote,
+          createdAt: new Date().toISOString(),
+        }
+        const addedNote = await addNote(id, newNoteData)
+        setNotes([...notes, addedNote])
+        setNewNote("")
+      } catch (error) {
+        console.error("Error adding note:", error)
+      }
     }
   }
 
-  const handleDeleteNote = (noteId: string) => {
-    const updatedNotes = notes.filter((note) => note.id !== noteId)
-    saveNotes(updatedNotes)
+  const handleDeleteNote = async (noteId: string) => {
+    try {
+      await deleteNote(noteId)
+      setNotes(notes.filter((note) => note.id !== noteId))
+    } catch (error) {
+      console.error("Error deleting note:", error)
+    }
   }
 
   if (!character) {
@@ -72,85 +90,38 @@ export default function CharacterDetail() {
   }
 
   return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
+    <Container maxWidth="lg" sx={{ py: 6 }}>
       <Button startIcon={<ArrowBackIcon />} onClick={() => router.push("/")} sx={{ mb: 4 }}>
         Back to characters
       </Button>
 
-      <Grid container spacing={4}>
-        <Grid item xs={12} md={4}>
-          <Box
-            component="img"
-            src={character.image}
-            alt={character.name}
-            sx={{
-              width: "100%",
-              height: "auto",
-              borderRadius: 2,
-              boxShadow: 3,
-              mb: 2,
-            }}
-          />
-
-          <Paper sx={{ p: 2, mb: 2 }}>
-            <Typography variant="h6" gutterBottom>
-              Basic Info
+      <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 4 }}>
+        <Box sx={{ width: { xs: '100%', md: '33%' }, borderRadius: 23 }}>
+            <Box
+              component="img"
+              src={character.image}
+              alt={character.name}
+              sx={{
+                width: "100%",
+                height: "auto",
+                borderRadius: 2,
+                mb: 2,
+              }}
+            />
+            <Typography variant="h4" gutterBottom>
+              {character.name}
             </Typography>
-            <Divider sx={{ mb: 2 }} />
-
-            <Typography variant="body1" gutterBottom>
-              <strong>Village:</strong> {character.village}
+            <Typography variant="body1" color="text.secondary" paragraph align="left" sx={{ mb: 3, mt: 3 }}>
+              {character.description}
             </Typography>
-            <Typography variant="body1" gutterBottom>
-              <strong>Rank:</strong> {character.rank}
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              <strong>Status:</strong> {character.status}
-            </Typography>
-          </Paper>
-        </Grid>
-
-        <Grid item xs={12} md={8}>
-          <Typography
-            variant="h3"
-            component="h1"
-            gutterBottom
-            sx={{
-              color: "primary.main",
-              fontWeight: "bold",
-            }}
-          >
-            {character.name}
-          </Typography>
-
-          <Box sx={{ mb: 4 }}>
-            {character.tags.map((tag) => (
-              <Chip key={tag} label={tag} sx={{ mr: 1, mb: 1, backgroundColor: "secondary.main", color: "white" }} />
-            ))}
-          </Box>
-
-          <Typography variant="body1" paragraph>
-            {character.description}
-          </Typography>
-
-          <Paper sx={{ p: 3, mb: 4 }}>
-            <Typography variant="h5" gutterBottom>
-              Abilities
-            </Typography>
-            <Divider sx={{ mb: 2 }} />
-            <List>
-              {character.abilities.map((ability, index) => (
-                <ListItem key={index} sx={{ py: 1 }}>
-                  <ListItemText
-                    primary={ability.name}
-                    secondary={ability.description}
-                    primaryTypographyProps={{ fontWeight: "bold", color: "primary.main" }}
-                  />
-                </ListItem>
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, justifyContent: "center" }}>
+              {character.tags.map((tag) => (
+                <Chip key={tag} label={tag} color="primary" variant="outlined" />
               ))}
-            </List>
-          </Paper>
+            </Box>
+        </Box>
 
+        <Box sx={{ width: { xs: '100%', md: '67%' } }}>
           <Card sx={{ mb: 4 }}>
             <CardContent>
               <Typography variant="h5" gutterBottom>
@@ -166,7 +137,7 @@ export default function CharacterDetail() {
                   placeholder="Add your thoughts about this character..."
                   value={newNote}
                   onChange={(e) => setNewNote(e.target.value)}
-                  sx={{ mb: 1 }}
+                  sx={{ mb: 2 }}
                 />
                 <Button
                   variant="contained"
@@ -188,7 +159,11 @@ export default function CharacterDetail() {
                     <ListItem
                       key={note.id}
                       secondaryAction={
-                        <IconButton edge="end" onClick={() => handleDeleteNote(note.id)}>
+                        <IconButton
+                          edge="end"
+                          onClick={() => handleDeleteNote(note.id)}
+                          color="error"
+                        >
                           <DeleteIcon />
                         </IconButton>
                       }
@@ -211,9 +186,8 @@ export default function CharacterDetail() {
               )}
             </CardContent>
           </Card>
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
     </Container>
   )
 }
-

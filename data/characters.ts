@@ -441,7 +441,328 @@ export const characters: Character[] = [
           "An enormous chakra construct that grants unparalleled offensive and defensive capabilities.",
       },
     ],
-  }
+  },
+  {
+    id: "obito-uchiha",
+    name: "Obito Uchiha",
+    image: "https://cdn-images.dzcdn.net/images/cover/b0d66624e4344ffcb5f7465f9ffd3293/0x1900-000000-80-0-0.jpg",
+    description:
+      "Obito Uchiha was a former member of Team Minato and a key figure in the Fourth Great Ninja War. He initially sought to create a world without pain but later redeemed himself.",
+    village: "Konohagakure (Former)",
+    rank: "Rogue Ninja",
+    status: "Deceased",
+    tags: ["Uchiha Clan", "Rinnegan", "Kamui"],
+    abilities: [
+      {
+        name: "Kamui",
+        description:
+          "A Mangekyō Sharingan ability that allows Obito to transport himself and others to another dimension.",
+      },
+      {
+        name: "Wood Release",
+        description:
+          "A unique kekkei genkai that allows Obito to manipulate wood and plant life.",
+      },
+    ],
+  },
+  {
+    id: "kurenai-yuhi",
+    name: "Kurenai Yuhi",
+    image: "https://www.giantbomb.com/a/uploads/scale_medium/0/5756/322063-kurenai_yuhi.jpg",
+    description:
+      "Kurenai Yuhi is a kunoichi of Konohagakure and a member of Team 8. She specializes in genjutsu and is known for her calm demeanor.",
+    village: "Konohagakure",
+    rank: "Jōnin",
+    status: "Alive",
+    tags: ["Genjutsu", "Team 8"],
+    abilities: [
+      {
+        name: "Genjutsu",
+        description:
+          "Kurenai is highly skilled in genjutsu, capable of trapping opponents in illusions.",
+      },
+      {
+        name: "Fire Release Techniques",
+        description:
+          "She can use fire-based jutsu, including the Fire Style: Phoenix Fire Jutsu.",
+      },
+    ],
+  },
+  {
+    id: "ino-yamanaka",
+    name: "Ino Yamanaka",
+    image: "https://narutoversity.wordpress.com/wp-content/uploads/2018/03/yamanaka-ino.jpg",
+    description:
+      "Ino Yamanaka is a kunoichi of Konohagakure and a member of Team 10. She specializes in mind transfer techniques and is known for her strong-willed personality.",
+    village: "Konohagakure",
+    rank: "Jōnin",
+    status: "Alive",
+    tags: ["Mind Transfer", "Team 10"],
+    abilities: [
+      {
+        name: "Mind Body Switch Technique",
+        description:
+          "Allows Ino to take control of an opponent's body by transferring her consciousness into theirs.",
+      },
+      {
+        name: "Mind Reading Technique",
+        description:
+          "Enables Ino to read the thoughts of others, allowing her to gather information.",
+      },
+    ],
+  },
+  {
+    id: "shino-aburame",
+    name: "Shino Aburame",
+    image: "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/06/Shino-Aburame.jpg",
+    description:
+      "Shino Aburame is a kunoichi of Konohagakure and a member of Team 8. He is known for his mastery of insects and his calm, analytical demeanor.",
+    village: "Konohagakure",
+    rank: "Jōnin",
+    status: "Alive",
+    tags: ["Insect Jutsu", "Team 8"],
+    abilities: [
+      {
+        name: "Insect Jutsu",
+        description:
+          "Shino can control and communicate with insects, using them for various purposes in battle.",
+      },
+      {
+        name: "Parasitic Insects",
+        description:
+          "He can use insects to drain chakra from opponents or to gather information.",
+      },
+    ],
+  },
+  {
+    id: "ten-ten",
+    name: "Tenten",
+    image: "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/12/tenten.jpg",
+    description:
+      "Tenten is a kunoichi of Konohagakure and a member of Team Guy. She specializes in weaponry and is known for her vast arsenal of ninja tools.",
+    village: "Konohagakure",
+    rank: "Jōnin",
+    status: "Alive",
+    tags: ["Weapon Specialist", "Team Guy"],
+    abilities: [
+      {
+        name: "Weapon Summoning",
+        description:
+          "Tenten can summon various weapons from scrolls, allowing her to adapt to different combat situations.",
+      },
+      {
+        name: "Twin Rising Dragons",
+        description:
+          "A powerful technique that allows Tenten to create a barrage of weapons to overwhelm opponents.",
+      },
+    ],
+  },
+  {
+    id: "kiba-inuzuka",
+    name: "Kiba Inuzuka",
+    image: "https://www.superherotoystore.com/cdn/shop/articles/Untitled_design_2_1600x.jpg?v=1716645329",
+    description:
+      "Kiba Inuzuka is a kunoichi of Konohagakure and a member of Team 8. He is known for his close bond with his dog, Akamaru, and his feral fighting style.",
+    village: "Konohagakure",
+    rank: "Jōnin",
+    status: "Alive",
+    tags: ["Inuzuka Clan", "Team 8"],
+    abilities: [
+      {
+        name: "Beast Mimicry",
+        description:
+          "Kiba can enhance his physical abilities by mimicking the traits of animals, such as increased speed and strength.",
+      },
+      {
+        name: "Fang Over Fang",
+        description:
+          "A powerful spinning attack where Kiba and Akamaru charge at their opponent in a whirlwind of claws and teeth.",
+      },
+    ],
+  },
+  {
+    id: "asuma-sarutobi",
+    name: "Asuma Sarutobi",
+    image: "https://static1.srcdn.com/wordpress/wp-content/uploads/2019/12/Asuma-Sarutobi-In-His-Last-Naruto-Shippuden-Battle.jpg",
+    description:
+      "Asuma Sarutobi was a jōnin of Konohagakure and the leader of Team 10. He was known for his mastery of wind-based techniques and his laid-back personality.",
+    village: "Konohagakure",
+    rank: "Jōnin",
+    status: "Deceased",
+    tags: ["Sarutobi Clan", "Team 10"],
+    abilities: [
+      {
+        name: "Wind Release Techniques",
+        description:
+          "Asuma could use wind-based jutsu, including the Wind Blade technique.",
+      },
+      {
+        name: "Trench Knives",
+        description:
+          "He wielded trench knives infused with chakra, allowing him to cut through opponents with ease.",
+      },
+    ],
+  },
+  {
+    id: "nagato",
+    name: "Nagato",
+    image: "https://wallpapers.com/images/featured/nagato-xyof9cdxfuqsk918.jpgg",
+    description:
+      "Nagato, also known as Pain, was the leader of Akatsuki and the wielder of the Rinnegan. He sought to bring peace to the world through pain and destruction.",
+    village: "Amegakure",
+    rank: "Leader of Akatsuki",
+    status: "Deceased",
+    tags: ["Akatsuki", "Rinnegan", "Six Paths"],
+    abilities: [
+      {
+        name: "Rinnegan",
+        description:
+          "A legendary dōjutsu that grants the user mastery over all forms of ninjutsu and the Six Paths Techniques.",
+      },
+      {
+        name: "Six Paths of Pain",
+        description:
+          "Nagato controls six corpses remotely, each with unique abilities, acting as his proxies in battle.",
+      },
+      {
+        name: "Chibaku Tensei",
+        description:
+          "Creates a massive gravitational core that attracts and traps everything around it, forming a satellite.",
+      },
+      {
+        name: "Shinra Tensei",
+        description:
+          "A technique that repels everything in the vicinity with a powerful force.",
+      },
+    ],
+  },
+  {
+    id: "pain",
+    name: "Pain",
+    image: "https://miro.medium.com/v2/resize:fit:1400/0*omXNDFPKOGqy1Qaj.png",
+    description:
+      "Pain is the collective name for the Six Paths of Pain, six bodies controlled by Nagato to serve as the public leader of Akatsuki.",
+    village: "Amegakure",
+    rank: "Akatsuki Leader (Public)",
+    status: "Deceased",
+    tags: ["Akatsuki", "Six Paths", "Rinnegan"],
+    abilities: [
+      {
+        name: "Deva Path",
+        description:
+          "Controls attractive and repulsive forces, allowing for techniques like Shinra Tensei and Chibaku Tensei.",
+      },
+      {
+        name: "Asura Path",
+        description:
+          "Grants mechanized limbs, weaponry, and armor.",
+      },
+      {
+        name: "Human Path",
+        description:
+          "Can read minds and extract souls.",
+      },
+      {
+        name: "Animal Path",
+        description:
+          "Summons various powerful creatures.",
+      },
+      {
+        name: "Preta Path",
+        description:
+          "Absorbs chakra-based attacks.",
+      },
+      {
+        name: "Naraka Path",
+        description:
+          "Summons the King of Hell for interrogation and restoration.",
+      },
+    ],
+  },
+  {
+    id: "konan",
+    name: "Konan",
+    image: "https://static1.srcdn.com/wordpress/wp-content/uploads/2024/09/konan.jpg",
+    description:
+      "Konan was a founding member of Akatsuki and Nagato's loyal partner. She was known for her paper-based ninjutsu and calm, analytical mind.",
+    village: "Amegakure",
+    rank: "Akatsuki",
+    status: "Deceased",
+    tags: ["Akatsuki", "Paper Jutsu"],
+    abilities: [
+      {
+        name: "Paper Jutsu",
+        description:
+          "Konan can transform her body into countless sheets of paper, which she manipulates for offense and defense.",
+      },
+      {
+        name: "Paper Clone",
+        description:
+          "Creates clones made entirely of paper to deceive and attack enemies.",
+      },
+      {
+        name: "Paper Ocean",
+        description:
+          "A massive technique where Konan creates a sea of explosive paper tags to overwhelm her opponent.",
+      },
+    ],
+  },
+  {
+    id: "kisame-hoshigaki",
+    name: "Kisame Hoshigaki",
+    image: "https://preview.redd.it/0tlmhcrcdyx61.jpg?auto=webp&s=80599cc5cb4a7c8bf3dbcc444fd0a274ed9cf3d5",
+    description:
+      "Kisame Hoshigaki was a member of the Seven Ninja Swordsmen of the Mist and later joined Akatsuki. He was known as the 'Monster of the Hidden Mist' and wielded the sentient sword Samehada.",
+    village: "Kirigakure",
+    rank: "Missing-nin",
+    status: "Deceased",
+    tags: ["Akatsuki", "Seven Swordsmen", "Samehada"],
+    abilities: [
+      {
+        name: "Samehada",
+        description:
+          "A sentient sword that can absorb chakra from opponents and merge with Kisame, increasing his power.",
+      },
+      {
+        name: "Water Style: Great Shark Bullet",
+        description:
+          "Creates a massive shark made of water that absorbs chakra from its target.",
+      },
+      {
+        name: "Water Prison Shark Dance Technique",
+        description:
+          "Transforms the battlefield into a giant dome of water, giving Kisame the advantage in aquatic combat.",
+      },
+    ],
+  },
+  {
+    id: "danzo-shimura",
+    name: "Danzo Shimura",
+    image: "https://static1.cbrimages.com/wordpress/wp-content/uploads/2022/08/Danzo-Naruto-(1).jpg",
+    description:
+      "Danzo Shimura was a high-ranking Konoha elder and the leader of Root, a secretive branch of the Anbu. He sought to protect the village through any means necessary, often using ruthless tactics.",
+    village: "Konohagakure",
+    rank: "Elder",
+    status: "Deceased",
+    tags: ["Root", "Sharingan", "Wind Release"],
+    abilities: [
+      {
+        name: "Izanagi",
+        description:
+          "A forbidden Uchiha technique that allows the user to alter reality for a brief period, negating fatal injuries.",
+      },
+      {
+        name: "Wind Release: Vacuum Bullets",
+        description:
+          "Fires a barrage of wind bullets from the mouth, capable of piercing targets.",
+      },
+      {
+        name: "Multiple Sharingan",
+        description:
+          "Danzo implanted several Sharingan into his right arm, granting him access to powerful Uchiha abilities.",
+      },
+    ],
+  },
 ];
 
 
