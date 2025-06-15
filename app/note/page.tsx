@@ -19,7 +19,6 @@ import {
   Alert,
   Snackbar,
 } from "@mui/material"
-import DeleteIcon from "@mui/icons-material/Delete"
 import SearchIcon from "@mui/icons-material/Search"
 import AddIcon from "@mui/icons-material/Add"
 import { characters } from "@/data/characters"
@@ -209,15 +208,6 @@ export default function NotesPage() {
                 <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 1 }}>
                   <Button size="small" variant="outlined" onClick={() => handleViewCharacter(note.characterId)}>
                     View Character
-                  </Button>
-                  <Button
-                    size="small"
-                    variant="outlined"
-                    color="error"
-                    startIcon={<DeleteIcon />}
-                    onClick={() => handleDeleteNote(note.characterId, note.id)}
-                  >
-                    Delete
                   </Button>
                 </Box>
               </CardContent>
