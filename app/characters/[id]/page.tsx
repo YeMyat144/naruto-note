@@ -18,7 +18,6 @@ import {
   Card,
   CardContent,
 } from "@mui/material"
-import DeleteIcon from "@mui/icons-material/Delete"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import { characters } from "@/data/characters"
 import type { CharacterNote } from "@/types"
@@ -158,15 +157,6 @@ export default function CharacterDetail() {
                   {notes.map((note) => (
                     <ListItem
                       key={note.id}
-                      secondaryAction={
-                        <IconButton
-                          edge="end"
-                          onClick={() => handleDeleteNote(note.id)}
-                          color="error"
-                        >
-                          <DeleteIcon />
-                        </IconButton>
-                      }
                       sx={{
                         backgroundColor: "background.paper",
                         mb: 1,
